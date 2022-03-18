@@ -7,4 +7,6 @@ router.get('/', showTalkers);
 
 router.get('/:id', findTalkerById);
 
+// router.post('/', )
+
 module.exports = router;
