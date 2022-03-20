@@ -34,6 +34,6 @@ router.use(validateRate);
 
 router.post('/', addTalker);
 
-router.put('/:id',getTalkerById, editTalker);
+router.put('/:id', getTalkerById, editTalker);
 
 module.exports = router;
