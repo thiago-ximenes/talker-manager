@@ -5,7 +5,6 @@ const genToken = require('../middlewares/genToken');
 
 router.post('/', validateLogin, genToken, (req, res) => {
   const token = req.headers.authorization;
-  // console.log(token);
   return res.status(200).json({ token });
 });
 

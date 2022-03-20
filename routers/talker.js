@@ -8,16 +8,16 @@ const validateAge = require('../middlewares/validateAge');
 const validateTalk = require('../middlewares/validateTalk');
 const validateWatchedAt = require('../middlewares/validateWatchedAt');
 const validateRate = require('../middlewares/validateRate');
-const getToken = require('../middlewares/getToken');
-
-router.use(getToken);
+const validateToken = require('../middlewares/validateToken');
 
 router.get('/', showTalkers);
 
 router.get('/:id', findTalkerById);
 
 router.post(
-  '/', validateName, validateAge, validateTalk, validateWatchedAt, validateRate, addTalker,
+  '/',
+  validateToken,
+  validateName, validateAge, validateTalk, validateWatchedAt, validateRate, addTalker,
   );
 
 module.exports = router;
