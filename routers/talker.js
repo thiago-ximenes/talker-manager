@@ -11,8 +11,11 @@ const validateRate = require('../middlewares/validateRate');
 const validateToken = require('../middlewares/validateToken');
 const editTalker = require('../middlewares/editTalker');
 const deleteTalker = require('../middlewares/deleteTalker');
+const searchTalker = require('../middlewares/searchTalker');
 
 router.get('/', showTalkers);
+
+router.get('/search', validateToken, searchTalker, showTalkers);
 
 router.get('/:id', getTalkerById, (req, res) => {
   const { talkerFound } = req.talker;

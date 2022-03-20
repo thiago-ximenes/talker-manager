@@ -1,14 +1,19 @@
 const getTalkerId = require('../services/addTalkerId');
 const createTalker = require('../services/createTalker');
+const getTalkers = require('../services/getTalkers');
 
 async function addTalker(req, res) {
   const { name, age, talk } = req.body;
 
   const id = await getTalkerId();
-  
-  await createTalker([{
+  const talkers = await getTalkers();
+
+  talkers.push({
     id, name, age, talk,
-  }], 'talker.json');
+  });
+  console.log(talkers);
+
+  await createTalker(talkers, 'talker.json');
   return res.status(201).json({
     id, name, age, talk,
   });
