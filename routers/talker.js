@@ -9,23 +9,27 @@ const validateTalk = require('../middlewares/validateTalk');
 const validateWatchedAt = require('../middlewares/validateWatchedAt');
 const validateRate = require('../middlewares/validateRate');
 const validateToken = require('../middlewares/validateToken');
+const editTalker = require('../middlewares/editTalker');
 
 router.get('/', showTalkers);
 
 router.get('/:id', getTalkerById, (req, res) => {
-  const { talker } = req;
-  if (!talker) {
+  const { talkerFound } = req.talker;
+  if (!talkerFound) {
       res.status(404).json({ message: 'Pessoa palestrante não encontrada' });
     }
-    return res.status(200).json(talker);
+    return res.status(200).json(talkerFound);
 });
 
-router.post(
-  '/',
-  validateToken,
-  validateName, validateAge, validateTalk, validateWatchedAt, validateRate, addTalker,
-);
+router.use(validateToken);
+router.use(validateName);
+router.use(validateAge);
+router.use(validateTalk);
+router.use(validateWatchedAt);
+router.use(validateRate);
 
-router.put('/:id', getTalkerById);
+router.post('/', addTalker);
+
+router.put('/:id', getTalkerById, editTalker);
 
 module.exports = router;

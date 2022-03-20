@@ -2,16 +2,16 @@ function validateRate(req, res, next) {
   // https://masteringjs.io/tutorials/fundamentals/is-integer
   const { talk: { rate } } = req.body;
 
-  if (!rate) {
+  if (rate === undefined) {
     return res.status(400)
       .json(
         { message: 'O campo "talk" é obrigatório e "watchedAt" e "rate" não podem ser vazios' },
-      );
+        );
   }
-  if (!Number.isInteger(rate) || (rate < 1 || rate > 5)) {
+  if (!Number.isInteger(rate) || rate <= 0 || rate > 5) {
     return res.status(400).json({ message: 'O campo "rate" deve ser um inteiro de 1 à 5' });
   }
-
+    
   next();
 }
 
