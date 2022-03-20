@@ -9,5 +9,3 @@ async function findTalkerById(id) {
 }
 
 module.exports = findTalkerById;
-
-findTalkerById(1).then((talker) => console.log(talker));

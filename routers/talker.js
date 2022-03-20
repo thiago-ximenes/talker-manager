@@ -10,6 +10,7 @@ const validateWatchedAt = require('../middlewares/validateWatchedAt');
 const validateRate = require('../middlewares/validateRate');
 const validateToken = require('../middlewares/validateToken');
 const editTalker = require('../middlewares/editTalker');
+const deleteTalker = require('../middlewares/deleteTalker');
 
 router.get('/', showTalkers);
 
@@ -22,6 +23,9 @@ router.get('/:id', getTalkerById, (req, res) => {
 });
 
 router.use(validateToken);
+
+router.delete('/:id', getTalkerById, deleteTalker);
+
 router.use(validateName);
 router.use(validateAge);
 router.use(validateTalk);
@@ -30,6 +34,6 @@ router.use(validateRate);
 
 router.post('/', addTalker);
 
-router.put('/:id', getTalkerById, editTalker);
+router.put('/:id', editTalker);
 
 module.exports = router;

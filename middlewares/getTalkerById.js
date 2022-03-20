@@ -1,8 +1,10 @@
 const findTalkerById = require('../services/findTalkerById');
 
-async function showTalkerById(req, res, next) {
+async function getTalkerById(req, res, next) {
   try {
     const { id } = req.params;
+
+    console.log(id);
     
     const talkerFound = await findTalkerById(id);
 
@@ -14,4 +16,4 @@ async function showTalkerById(req, res, next) {
   next();
 }
 
-module.exports = showTalkerById;
+module.exports = getTalkerById;
